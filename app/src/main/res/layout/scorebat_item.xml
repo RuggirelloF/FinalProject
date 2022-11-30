@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/sb_teamtext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Match: "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/sb_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/sb_teamtext"
+        app:layout_constraintTop_toTopOf="@+id/sb_teamtext" />
+
+    <ImageView
+        android:id="@+id/sb_thumbnail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="36dp"
+        android:maxWidth="400dp"
+        android:maxHeight="300dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sb_comp_title"
+        tools:ignore="ImageContrastCheck"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/sb_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/sb_datetext"
+        app:layout_constraintTop_toTopOf="@+id/sb_datetext" />
+
+    <TextView
+        android:id="@+id/sb_datetext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date: "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sb_teamtext" />
+
+    <TextView
+        android:id="@+id/sb_comptext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Competition: "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sb_datetext" />
+
+    <TextView
+        android:id="@+id/sb_comp_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/sb_comptext"
+        app:layout_constraintTop_toTopOf="@+id/sb_comptext" />
+
+    <Button
+        android:id="@+id/sb_watchmatch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="Watch Match"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.174"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sb_thumbnail" />
+
+    <Button
+        android:id="@+id/sb_watchmatch2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Watch Match"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/sb_watchmatch1"
+        app:layout_constraintTop_toTopOf="@+id/sb_watchmatch1" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
