@@ -1,12 +1,16 @@
 package algonquin.cst2335.finalproject;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
@@ -51,16 +55,34 @@ public class scorebat extends AppCompatActivity {
     ArrayList<ScorebatModelClass> scorebatArrayList;
     String url = "https://www.scorebat.com/video-api/v1/";
 
-
     ActivityScorebatBinding binding;
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.nav_fav:
+                Toast.makeText(this, "You pressed Fav", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.nav_home:
+                Toast.makeText(this, "You pressed Home", Toast.LENGTH_SHORT).show();
+                break;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.sb_menu, menu);
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityScorebatBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        setSupportActionBar(binding.sbToolbar);
         recyclerView = findViewById(R.id.sb_recyclerView);
 
         scorebatArrayList = new ArrayList<>();
@@ -89,20 +111,21 @@ public class scorebat extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
-
+    //At the moment only searches throught the first 4 items to decrease load times on the images. (Change i back to solve this.)
     private void getData() {
         RequestQueue queue = Volley.newRequestQueue(scorebat.this);
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new  Response.Listener<JSONArray>(){
             @Override
             public void onResponse(JSONArray response){
                 recyclerView.setVisibility(View.VISIBLE);
-                for (int i = 0; i < response.length(); i++){
+                for (int i = 0; i < 4/*response.length()*/; i++){
                     try {
                         //Top level object
                         JSONObject responseObject = response.getJSONObject(i);
                         String sbTitle = responseObject.getString("title");
                         String sbDate = responseObject.getString("date");
                         String sbTumbnail = responseObject.getString("thumbnail");
+                        String sbStreamUrl= responseObject.getString("url");
 
                         //Competition - inner array
                         JSONObject sbComp = responseObject.getJSONObject("competition");
@@ -118,9 +141,10 @@ public class scorebat extends AppCompatActivity {
                         String sbSide2Name = sbSide2.getString("name");
                         String sbWatchLink2 = sbSide2.getString("url");
 
+
                         //v1
                         //scorebatArrayList.add(new ScorebatModelClass(sbTitle, sbTumbnail,sbDate));
-                        scorebatArrayList.add(new ScorebatModelClass(sbTitle, sbTumbnail,sbDate, sbCompName, sbSide1Name, sbWatchLink1, sbSide2Name, sbWatchLink2));
+                        scorebatArrayList.add(new ScorebatModelClass(sbTitle, sbTumbnail,sbDate, sbCompName, sbSide1Name, sbWatchLink1, sbSide2Name, sbWatchLink2, sbStreamUrl));
                         buildRecyclerView();
 
                     } catch (JSONException e) {

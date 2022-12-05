@@ -2,9 +2,11 @@ package algonquin.cst2335.finalproject;
 
 public class ScorebatModelClass
 {
+    //BASE
     String title;
     String thumbnail;
     String date;
+    String sbStreamUrl;
 
     //COMPETITION
     String compName;
@@ -18,6 +20,7 @@ public class ScorebatModelClass
     //side2
     String team2Name;
     String sbWatchLink2;
+
 
     public String getTitle() {
         return title;
@@ -84,9 +87,17 @@ public class ScorebatModelClass
         this.sbWatchLink2 = sbWatchLink2;
     }
 
+    public String getSbStreamUrl() {
+        return sbStreamUrl;
+    }
+
+    public void setSbStreamUrl(String sbStreamUrl) {
+        this.sbStreamUrl = sbStreamUrl;
+    }
+
     public ScorebatModelClass(String title, String thumbnail, String date,
                                     String compName, String team1Name, String sbWatchLink1,
-                                        String team2Name, String sbWatchLink2){
+                                        String team2Name, String sbWatchLink2, String sbStreamUrl){
         this.title = title;
         this.date = date;
         this.thumbnail = thumbnail;
@@ -95,7 +106,7 @@ public class ScorebatModelClass
         this.sbWatchLink1 = sbWatchLink1;
         this.team2Name = team2Name;
         this.sbWatchLink2 = sbWatchLink2;
-
+        this.sbStreamUrl = sbStreamUrl;
 
     }
 }

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/sb_teamtext"
+        android:id="@+id/sbf_teamtext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Match: "
@@ -14,14 +14,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/sb_title"
+        android:id="@+id/sbf_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@+id/sb_teamtext"
-        app:layout_constraintTop_toTopOf="@+id/sb_teamtext" />
+        app:layout_constraintStart_toEndOf="@+id/sbf_teamtext"
+        app:layout_constraintTop_toTopOf="@+id/sbf_teamtext" />
 
     <ImageView
-        android:id="@+id/sb_thumbnail"
+        android:id="@+id/sbf_thumbnail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
@@ -29,65 +29,65 @@
         android:maxWidth="400dp"
         android:maxHeight="300dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sb_comp_title"
+        app:layout_constraintTop_toBottomOf="@+id/sbf_comp_title"
         tools:ignore="ImageContrastCheck"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/sb_date"
+        android:id="@+id/sbf_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/sb_datetext"
-        app:layout_constraintTop_toTopOf="@+id/sb_datetext" />
+        app:layout_constraintStart_toEndOf="@+id/sbf_datetext"
+        app:layout_constraintTop_toTopOf="@+id/sbf_datetext" />
 
     <TextView
-        android:id="@+id/sb_datetext"
+        android:id="@+id/sbf_datetext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Date: "
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sb_teamtext" />
+        app:layout_constraintTop_toBottomOf="@+id/sbf_teamtext" />
 
     <TextView
-        android:id="@+id/sb_comptext"
+        android:id="@+id/sbf_comptext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Competition: "
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sb_datetext" />
+        app:layout_constraintTop_toBottomOf="@+id/sbf_datetext" />
 
     <TextView
-        android:id="@+id/sb_comp_title"
+        android:id="@+id/sbf_comp_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/sb_comptext"
-        app:layout_constraintTop_toTopOf="@+id/sb_comptext" />
+        app:layout_constraintStart_toEndOf="@+id/sbf_comptext"
+        app:layout_constraintTop_toTopOf="@+id/sbf_comptext" />
 
     <Button
-        android:id="@+id/sb_watchmatch1"
+        android:id="@+id/sbf_watchmatch1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="Watch Match"
-        app:layout_constraintStart_toStartOf="@+id/sb_live_match_btn"
-        app:layout_constraintTop_toBottomOf="@+id/sb_live_match_btn" />
+        app:layout_constraintStart_toStartOf="@+id/sbf_live_match_btn"
+        app:layout_constraintTop_toBottomOf="@+id/sbf_live_match_btn" />
 
     <Button
         android:id="@+id/sb_watchmatch2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Watch Match"
-        app:layout_constraintStart_toStartOf="@+id/sb_watchmatch1"
-        app:layout_constraintTop_toBottomOf="@+id/sb_watchmatch1" />
+        app:layout_constraintStart_toStartOf="@+id/sbf_watchmatch1"
+        app:layout_constraintTop_toBottomOf="@+id/sbf_watchmatch1" />
 
     <Button
-        android:id="@+id/sb_live_match_btn"
+        android:id="@+id/sbf_live_match_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="View Live Match"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sb_thumbnail" />
+        app:layout_constraintTop_toBottomOf="@+id/sbf_thumbnail" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
