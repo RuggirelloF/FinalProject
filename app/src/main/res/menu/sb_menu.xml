@@ -13,6 +13,11 @@
               android:icon="@drawable/ic_sb_fav"
               android:title="Favourites"
               app:showAsAction="ifRoom"></item>
+        <item android:id="@+id/nav_about"
+              android:title="About"
+              android:icon="@drawable/ic_baseline_about"
+              app:showAsAction="ifRoom"></item>
+
     </group>
 
 </menu>

@@ -2,6 +2,8 @@ package algonquin.cst2335.finalproject;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentContainer;
+import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -61,6 +63,7 @@ public class scorebat extends AppCompatActivity {
     RecyclerView favRecyclerView;
     ArrayList<ScorebatModelClass> favsArrayList;
 
+    FragmentContainerView fragView;
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
@@ -68,11 +71,24 @@ public class scorebat extends AppCompatActivity {
                 Toast.makeText(this, "You pressed Fav", Toast.LENGTH_SHORT).show();
                 favRecyclerView.setVisibility(View.VISIBLE);
                 recyclerView.setVisibility(View.GONE);
+                fragView.setVisibility(View.GONE);
                 break;
             case R.id.nav_home:
                 Toast.makeText(this, "You pressed Home", Toast.LENGTH_SHORT).show();
                 favRecyclerView.setVisibility(View.GONE);
                 recyclerView.setVisibility(View.VISIBLE);
+                fragView.setVisibility(View.GONE);
+                break;
+            case R.id.nav_about:
+                Toast.makeText(this, "You pressed about", Toast.LENGTH_SHORT).show();
+                getSupportFragmentManager().beginTransaction()
+                        .setReorderingAllowed(true)
+                        .add(R.id.sbFragContainer, ScorebatAbout.class, null)
+                        .commit();
+                favRecyclerView.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.GONE);
+                fragView.setVisibility(View.VISIBLE);
+
                 break;
         }
         return true;
@@ -94,6 +110,7 @@ public class scorebat extends AppCompatActivity {
         recyclerView = findViewById(R.id.sb_recyclerView);
         favRecyclerView = findViewById(R.id.favRecyclerView);
 
+        fragView = findViewById(R.id.sbFragContainer);
         favsArrayList = new ArrayList<>();
         scorebatArrayList = new ArrayList<>();
         getData();

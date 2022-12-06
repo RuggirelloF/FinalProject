@@ -37,4 +37,14 @@
         app:layout_constraintStart_toStartOf="@id/sb_toolbar"
         app:layout_constraintTop_toBottomOf="@id/sb_toolbar" />
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/sbFragContainer"
+        android:name="algonquin.cst2335.finalproject.ScorebatAbout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/favRecyclerView"
+        app:layout_constraintTop_toBottomOf="@+id/sb_toolbar" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
