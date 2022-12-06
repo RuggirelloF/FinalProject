@@ -28,6 +28,7 @@ public class ScorebatAdapter extends RecyclerView.Adapter<ScorebatAdapter.MyView
 
     private Context sbContext;
     private ArrayList<ScorebatModelClass> sbData;
+    private Boolean clicked = false;
 
 
     public ScorebatAdapter(ArrayList<ScorebatModelClass> sbData,Context sbContext) {
@@ -55,6 +56,13 @@ public class ScorebatAdapter extends RecyclerView.Adapter<ScorebatAdapter.MyView
 
         Picasso.get().load(sbModel.getThumbnail()).into(holder.thumbnail);
 
+        //Initial Visibility
+        holder.watchLiveBtn.setVisibility(View.GONE);
+        holder.side1Name.setVisibility(View.GONE);
+        holder.side2Name.setVisibility(View.GONE);
+        holder.thumbnail.setVisibility(View.GONE);
+        holder.favButton.setVisibility(View.GONE);
+
         holder.side1Name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,15 +86,33 @@ public class ScorebatAdapter extends RecyclerView.Adapter<ScorebatAdapter.MyView
                 sbContext.startActivity(new Intent(Intent.ACTION_VIEW, uri));
             }
         });
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(sbContext, sbModel.getTitle(), Toast.LENGTH_SHORT).show();
+                if(holder.watchLiveBtn.getVisibility() == View.GONE){
+                    Toast.makeText(sbContext, sbModel.getTitle(), Toast.LENGTH_SHORT).show();
+                    //holder.sbInfoMatchTitle.setText(sbModel.getTitle());
+                    holder.watchLiveBtn.setVisibility(View.VISIBLE);
+                    holder.side1Name.setVisibility(View.VISIBLE);
+                    holder.side2Name.setVisibility(View.VISIBLE);
+                    holder.thumbnail.setVisibility(View.VISIBLE);
+                    holder.favButton.setVisibility(View.VISIBLE);
+                }else {
+                    holder.watchLiveBtn.setVisibility(View.GONE);
+                    holder.side1Name.setVisibility(View.GONE);
+                    holder.side2Name.setVisibility(View.GONE);
+                    holder.thumbnail.setVisibility(View.GONE);
+                    holder.favButton.setVisibility(View.GONE);
+                }
+            }
+        });
+        //holder.itemView.setOnClickListener
+        holder.favButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 showAlert();
             }
         });
-
 
 
     }
@@ -117,6 +143,9 @@ public class ScorebatAdapter extends RecyclerView.Adapter<ScorebatAdapter.MyView
         //view
         public CardView cardView;
 
+        //fav Button
+        Button favButton;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -128,6 +157,7 @@ public class ScorebatAdapter extends RecyclerView.Adapter<ScorebatAdapter.MyView
             side2Name = itemView.findViewById(R.id.sb_watchmatch2);
             watchLiveBtn = itemView.findViewById(R.id.sb_live_match_btn);
             cardView = itemView.findViewById(R.id.sb_recyclerView);
+            favButton = itemView.findViewById(R.id.favButton);
 
 
 

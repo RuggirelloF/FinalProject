@@ -118,7 +118,7 @@ public class scorebat extends AppCompatActivity {
             @Override
             public void onResponse(JSONArray response){
                 recyclerView.setVisibility(View.VISIBLE);
-                for (int i = 0; i < 4/*response.length()*/; i++){
+                for (int i = 0; i < response.length(); i++){
                     try {
                         //Top level object
                         JSONObject responseObject = response.getJSONObject(i);
