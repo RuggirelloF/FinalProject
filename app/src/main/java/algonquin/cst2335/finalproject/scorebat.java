@@ -57,14 +57,22 @@ public class scorebat extends AppCompatActivity {
 
     ActivityScorebatBinding binding;
 
+    //favs
+    RecyclerView favRecyclerView;
+    ArrayList<ScorebatModelClass> favsArrayList;
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
             case R.id.nav_fav:
                 Toast.makeText(this, "You pressed Fav", Toast.LENGTH_SHORT).show();
+                favRecyclerView.setVisibility(View.VISIBLE);
+                recyclerView.setVisibility(View.GONE);
                 break;
             case R.id.nav_home:
                 Toast.makeText(this, "You pressed Home", Toast.LENGTH_SHORT).show();
+                favRecyclerView.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
                 break;
         }
         return true;
@@ -84,12 +92,33 @@ public class scorebat extends AppCompatActivity {
         setContentView(binding.getRoot());
         setSupportActionBar(binding.sbToolbar);
         recyclerView = findViewById(R.id.sb_recyclerView);
+        favRecyclerView = findViewById(R.id.favRecyclerView);
 
+        favsArrayList = new ArrayList<>();
         scorebatArrayList = new ArrayList<>();
         getData();
 
         buildRecyclerView();
+        buildFavsRecyclerView();
 
+    }
+    private void buildFavsRecyclerView() {
+
+        // initializing our adapter class.
+        adapter = new ScorebatAdapter(scorebatArrayList, scorebat.this);
+
+        // adding layout manager
+        // to our recycler view.
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        favRecyclerView.setHasFixedSize(true);
+
+        // setting layout manager
+        // to our recycler view.
+        favRecyclerView.setLayoutManager(manager);
+
+        // setting adapter to
+        // our recycler view.
+        favRecyclerView.setAdapter(adapter);
     }
 
     private void buildRecyclerView() {

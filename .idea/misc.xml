@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Hefty/AndroidStudioProjects/FinalProject/app/src/main/res/layout/activity_scorebat.xml" value="0.1" />
+        <entry key="..\:/Users/Hefty/AndroidStudioProjects/FinalProject/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
+        <entry key="..\:/Users/Hefty/AndroidStudioProjects/FinalProject/app/src/main/res/drawable/ic_sb_fav.xml" value="0.1" />
+        <entry key="..\:/Users/Hefty/AndroidStudioProjects/FinalProject/app/src/main/res/layout/activity_scorebat.xml" value="0.128" />
         <entry key="..\:/Users/Hefty/AndroidStudioProjects/FinalProject/app/src/main/res/layout/match_details_fragment.xml" value="0.1" />
         <entry key="..\:/Users/Hefty/AndroidStudioProjects/FinalProject/app/src/main/res/layout/sb_nav_header.xml" value="0.1" />
         <entry key="..\:/Users/Hefty/AndroidStudioProjects/FinalProject/app/src/main/res/layout/scorebat_item.xml" value="0.152" />

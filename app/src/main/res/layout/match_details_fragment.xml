@@ -75,7 +75,7 @@
         app:layout_constraintTop_toBottomOf="@+id/sbf_live_match_btn" />
 
     <Button
-        android:id="@+id/sb_watchmatch2"
+        android:id="@+id/sbf_watchmatch2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Watch Match"
