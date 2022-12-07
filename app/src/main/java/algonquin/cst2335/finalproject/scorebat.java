@@ -203,7 +203,6 @@ public class scorebat extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
-    //At the moment only searches throught the first 4 items to decrease load times on the images. (Change i back to solve this.)
     private void getData() {
         RequestQueue queue = Volley.newRequestQueue(scorebat.this);
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new  Response.Listener<JSONArray>(){

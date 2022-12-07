@@ -70,17 +70,6 @@ public class ScorebatAdapter extends RecyclerView.Adapter<ScorebatAdapter.MyView
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        if(isFav = true){
-            scorebatEntity sbEntity = sbEntities.get(position);
-            holder.title.setText(sbEntity.title);
-            holder.date.setText(sbEntity.date);
-            holder.compName.setText(sbEntity.compName);
-            holder.side1Name.setText("Watch " + sbEntity.team1Name);
-            holder.side2Name.setText("Watch " + sbEntity.tean2Name);
-
-            Picasso.get().load(sbEntity.imageURL).into(holder.thumbnail);
-
-        }
 
         ScorebatModelClass sbModel = sbData.get(position);
         holder.title.setText(sbModel.getTitle());
@@ -176,13 +165,6 @@ public class ScorebatAdapter extends RecyclerView.Adapter<ScorebatAdapter.MyView
                 //ScorebatModelClass model = new ScorebatModelClass(sbData.get(position).title,sbData.get(position).thumbnail, sbData.get(position).date,sbData.get(position).compName,sbData.get(position).team1Name,sbData.get(position).sbWatchLink1, sbModel.team1Name, sbData.get(position).sbWatchLink2,sbData.get(position).sbStreamUrl);
                 //favsArrayList.add(model);
 
-                //scorebatEntity thisEntity = new scorebatEntity(sbData.get(position).title,sbData.get(position).thumbnail, sbData.get(position).date,sbData.get(position).compName,sbData.get(position).team1Name,sbData.get(position).sbWatchLink1, sbModel.team1Name, sbData.get(position).sbWatchLink2,sbData.get(position).sbStreamUrl);
-                //Executor thread = Executors.newSingleThreadExecutor();
-                //thread.execute(() ->{
-                //    sbDao.insertMessage(thisEntity);
-                //});
-
-
             }
         });
 
@@ -218,8 +200,6 @@ public class ScorebatAdapter extends RecyclerView.Adapter<ScorebatAdapter.MyView
         //fav Button
         Button favButton;
 
-        //Watch Button
-        //Button watchButton;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -233,7 +213,6 @@ public class ScorebatAdapter extends RecyclerView.Adapter<ScorebatAdapter.MyView
             watchLiveBtn = itemView.findViewById(R.id.sb_live_match_btn);
             cardView = itemView.findViewById(R.id.sb_recyclerView);
             favButton = itemView.findViewById(R.id.favButton);
-            //watchButton = itemView.findViewById(R.id.sbHightlightsBtn);
 
 
 
@@ -248,7 +227,7 @@ public class ScorebatAdapter extends RecyclerView.Adapter<ScorebatAdapter.MyView
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Toast.makeText(sbContext, "Added to Favourites", Toast.LENGTH_SHORT).show();
-                scorebatEntity thisEntity = new scorebatEntity(sbData.get(position).title,sbData.get(position).thumbnail, sbData.get(position).date,sbData.get(position).compName,sbData.get(position).team1Name,sbData.get(position).sbWatchLink1, sbData.get(position).team2Name, sbData.get(position).sbWatchLink2,sbData.get(position).sbStreamUrl);
+                scorebatEntity thisEntity = new scorebatEntity(sbData.get(position).team1Name,sbData.get(position).team2Name, sbData.get(position).compName,sbData.get(position).date,sbData.get(position).title,sbData.get(position).sbWatchLink1, sbData.get(position).sbWatchLink2, sbData.get(position).thumbnail,sbData.get(position).sbStreamUrl);
                 Executor thread = Executors.newSingleThreadExecutor();
                 thread.execute(() ->{
                     sbDao.insertMessage(thisEntity);
