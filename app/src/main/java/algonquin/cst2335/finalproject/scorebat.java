@@ -1,6 +1,7 @@
 package algonquin.cst2335.finalproject;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentContainerView;
 import androidx.lifecycle.ViewModelProvider;
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -105,6 +107,17 @@ public class scorebat extends AppCompatActivity {
             case R.id.nav_goToTicketMaster:
                 //Intent intent = new Intent(scorebat.this, TicketMaster.class);
                 //scorebat.this.startActivity(intent);
+                break;
+            case R.id.nav_help:
+                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                alert.setTitle("Using Scorebat.");
+                alert.setMessage("Clicking on the matches reveals the links and Images. The tabs at the top right of the screen will guide you though the app.");
+                alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+                alert.show();
                 break;
         }
         return true;

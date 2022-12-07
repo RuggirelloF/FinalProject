@@ -28,6 +28,10 @@
             android:title="Movie Information"
             app:showAsAction="never"/>
 
+        <item android:id="@+id/nav_help"
+            android:title="Help"
+            app:showAsAction="never"/>
+
     </group>
 
 </menu>
