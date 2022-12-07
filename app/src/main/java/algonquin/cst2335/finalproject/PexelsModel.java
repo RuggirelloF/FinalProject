@@ -1,6 +1,6 @@
 package algonquin.cst2335.finalproject;
 
-public class PexelsItem {
+public class PexelsModel {
 
     private String pexelsImageUrl;
     private String pexelsCreatorName;
@@ -8,7 +8,7 @@ public class PexelsItem {
     private String pexelsOriginalUrl;
     private String pexelsMediumUrl;
 
-    public PexelsItem(String pexelsImageUrl, String pexelsCreatorName, String pexelsDescription, String pexelsOriginalUrl, String pexelsMediumUrl){
+    public PexelsModel(String pexelsImageUrl, String pexelsCreatorName, String pexelsDescription, String pexelsOriginalUrl, String pexelsMediumUrl){
         this.pexelsImageUrl = pexelsImageUrl;
         this.pexelsCreatorName = pexelsCreatorName;
         this.pexelsDescription = pexelsDescription;

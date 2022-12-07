@@ -12,10 +12,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.AbsListView;
-import android.widget.Button;
-import android.widget.EditText;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -43,7 +40,7 @@ public class PexelsActivity extends AppCompatActivity {
 
     RecyclerView pexelsRecyclerView;
     PexelsAdapter pexelsAdapter;
-    ArrayList<PexelsItem> pexelsItemList;
+    ArrayList<PexelsModel> pexelsModelList;
     int pageNumber = 1;
 
     Boolean isScrolling = false;
@@ -56,9 +53,9 @@ public class PexelsActivity extends AppCompatActivity {
         setContentView(R.layout.pexels_activity);
 
         pexelsRecyclerView = findViewById(R.id.pexelsRecyclerView);
-        pexelsItemList = new ArrayList<>();
+        pexelsModelList = new ArrayList<>();
 
-        pexelsAdapter = new PexelsAdapter(this, pexelsItemList);
+        pexelsAdapter = new PexelsAdapter(this, pexelsModelList);
         pexelsRecyclerView.setAdapter(pexelsAdapter);
 
         final GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 1);
@@ -98,7 +95,7 @@ public class PexelsActivity extends AppCompatActivity {
         Intent fromPrevious = getIntent();
         String searchParam = fromPrevious.getStringExtra("SearchParam");
         url = "https://api.pexels.com/v1/search/?page=" + pageNumber + "&per_page=80&query=" + searchParam;
-        pexelsItemList.clear();
+        pexelsModelList.clear();
         parseJSON();
     }
 
@@ -124,8 +121,8 @@ public class PexelsActivity extends AppCompatActivity {
                                 String pexelsOriginalUrl = objectImages.getString("original");
                                 String pexelsMediumUrl = objectImages.getString("medium");
 
-                                PexelsItem pexelsItem = new PexelsItem(pexelsImageUrl, pexelsCreatorName, pexelsDescription, pexelsOriginalUrl, pexelsMediumUrl);
-                                pexelsItemList.add(pexelsItem);
+                                PexelsModel pexelsModel = new PexelsModel(pexelsImageUrl, pexelsCreatorName, pexelsDescription, pexelsOriginalUrl, pexelsMediumUrl);
+                                pexelsModelList.add(pexelsModel);
                             }
                             pexelsAdapter.notifyDataSetChanged();
                             pageNumber++;

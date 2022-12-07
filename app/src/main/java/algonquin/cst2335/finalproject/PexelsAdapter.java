@@ -2,7 +2,6 @@ package algonquin.cst2335.finalproject;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentContainer;
 import androidx.fragment.app.FragmentContainerView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,23 +19,23 @@ import java.util.ArrayList;
 public class PexelsAdapter extends RecyclerView.Adapter<PexelsAdapter.PexelsViewHolder> {
 
     private Context pexelsContext;
-    private ArrayList<PexelsItem> pexelsItemList;
+    private ArrayList<PexelsModel> pexelsModelList;
 
-    public PexelsAdapter(Context pexelsContext, ArrayList<PexelsItem> pexelsItemList){
+    public PexelsAdapter(Context pexelsContext, ArrayList<PexelsModel> pexelsModelList){
         this.pexelsContext = pexelsContext;
-        this.pexelsItemList = pexelsItemList;
+        this.pexelsModelList = pexelsModelList;
     }
 
     @NonNull
     @Override
     public PexelsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(pexelsContext).inflate(R.layout.pexels_item, parent, false);
+        View view = LayoutInflater.from(pexelsContext).inflate(R.layout.pexels_model, parent, false);
         return new PexelsViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull PexelsViewHolder holder, int position) {
-        PexelsItem currentItem = pexelsItemList.get(position);
+        PexelsModel currentItem = pexelsModelList.get(position);
 
         String pexelsImageUrl = currentItem.getPexelsImageUrl();
         String pexelsCretorName = currentItem.getPexelsCreatorName();
@@ -46,7 +44,7 @@ public class PexelsAdapter extends RecyclerView.Adapter<PexelsAdapter.PexelsView
         holder.pexelsCreatorName.setText(pexelsCretorName);
         holder.pexelsDescription.setText(pexelsDescription);
         Glide.with(pexelsContext)
-                .load(pexelsItemList
+                .load(pexelsModelList
                         .get(position)
                         .getPexelsMediumUrl())
                 .into(holder.pexelsImageView);
@@ -54,7 +52,7 @@ public class PexelsAdapter extends RecyclerView.Adapter<PexelsAdapter.PexelsView
 
     @Override
     public int getItemCount() {
-        return pexelsItemList.size();
+        return pexelsModelList.size();
     }
 
     public class PexelsViewHolder extends RecyclerView.ViewHolder{
@@ -62,18 +60,12 @@ public class PexelsAdapter extends RecyclerView.Adapter<PexelsAdapter.PexelsView
         public ImageView pexelsImageView;
         public TextView pexelsCreatorName;
         public TextView pexelsDescription;
-        public FragmentContainerView pexelsFragmentContainerView;
 
         public PexelsViewHolder(@NonNull View itemView) {
             super(itemView);
             pexelsImageView = itemView.findViewById(R.id.pexelsImageFull);
             pexelsCreatorName = itemView.findViewById(R.id.pexelsCreatorName);
             pexelsDescription = itemView.findViewById(R.id.pexelsDescription);
-            pexelsFragmentContainerView = itemView.findViewById(R.id.pexelsFragmentContainerView);
-
-            /*itemView.setOnClickListener(click -> {
-                pexelsFragmentContainerView.setVisibility(View.VISIBLE);
-            });*/
 
         }
     }
