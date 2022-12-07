@@ -92,11 +92,19 @@ public class scorebat extends AppCompatActivity {
                 recyclerView.setVisibility(View.GONE);
                 fragView.setVisibility(View.VISIBLE);
                 break;
+
+             //Intents to other activites have be setup and attached on Toolbar navigations.
             case R.id.nav_goToMovieInformation:
+                //Intent intent = new Intent(scorebat.this, MovieInformation.class);
+                //scorebat.this.startActivity(intent);
                 break;
             case R.id.nav_goToPexels:
+                //Intent intent = new Intent(scorebat.this, Pexels.class);
+                //scorebat.this.startActivity(intent);
                 break;
             case R.id.nav_goToTicketMaster:
+                //Intent intent = new Intent(scorebat.this, TicketMaster.class);
+                //scorebat.this.startActivity(intent);
                 break;
         }
         return true;
