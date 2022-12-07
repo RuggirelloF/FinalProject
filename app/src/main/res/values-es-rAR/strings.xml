@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Proyecto Final</string>
     <string name="favButton">Agregar a favoritos</string>
     <string name="downButton">Descargar</string>
     <string name="searchParam">Parametro de Busqueda...</string>
@@ -8,5 +7,6 @@
     <string name="home_button">Menú</string>
     <string name="search_button">Buscar</string>
     <string name="back_button">Atrás</string>
+    <string name="app_name">Pexels por Fabrizio Ruggirello</string>
 
 </resources>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/darker_gray"
+    android:background="@android:color/black"
     tools:context=".PexelsSearch">
 
     <TextView
@@ -14,7 +14,7 @@
         android:layout_marginBottom="32dp"
         android:text="@string/search_button"
         android:textAllCaps="true"
-        android:textColor="@android:color/black"
+        android:textColor="@android:color/white"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/pexelsSearchEditText"
@@ -39,7 +39,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
+        android:background="@android:color/darker_gray"
         android:hint="@string/searchParam"
+        android:text="@string/searchParam"
+        android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

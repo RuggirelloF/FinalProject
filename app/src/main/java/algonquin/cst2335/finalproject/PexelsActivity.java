@@ -3,6 +3,7 @@ package algonquin.cst2335.finalproject;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -46,10 +47,15 @@ public class PexelsActivity extends AppCompatActivity {
     int currentItems, totalItems, scrollOutItems;
     String url ="https://api.pexels.com/v1/curated/?page=" + pageNumber + "&per_page=80";
 
+    protected PexelsViewModel pexelsViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pexels_activity);
+
+        pexelsViewModel = new ViewModelProvider(this).get(PexelsViewModel.class);
+        pexelsModelList = pexelsViewModel.images.getValue();
 
         pexelsRecyclerView = findViewById(R.id.pexelsRecyclerView);
         pexelsModelList = new ArrayList<>();
@@ -85,7 +91,14 @@ public class PexelsActivity extends AppCompatActivity {
             }
         });
 
-        
+        pexelsViewModel.selectedImage.observe(this, (originalImage) -> {
+            PexelsFragment pexelsFragment = new PexelsFragment(originalImage);
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.pexelsFragmentLocation, pexelsFragment)
+                    .addToBackStack("")
+                    .commit();
+        });
 
     }
 

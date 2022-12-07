@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentContainerView;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -19,11 +20,13 @@ import java.util.ArrayList;
 public class PexelsAdapter extends RecyclerView.Adapter<PexelsAdapter.PexelsViewHolder> {
 
     private Context pexelsContext;
+    private PexelsViewModel pexelsViewModel;
     private ArrayList<PexelsModel> pexelsModelList;
 
-    public PexelsAdapter(Context pexelsContext, ArrayList<PexelsModel> pexelsModelList){
+    public PexelsAdapter(PexelsActivity pexelsContext, ArrayList<PexelsModel> pexelsModelList){
         this.pexelsContext = pexelsContext;
         this.pexelsModelList = pexelsModelList;
+        pexelsViewModel  = new ViewModelProvider(pexelsContext).get(PexelsViewModel.class);
     }
 
     @NonNull
@@ -43,11 +46,7 @@ public class PexelsAdapter extends RecyclerView.Adapter<PexelsAdapter.PexelsView
 
         holder.pexelsCreatorName.setText(pexelsCretorName);
         holder.pexelsDescription.setText(pexelsDescription);
-        Glide.with(pexelsContext)
-                .load(pexelsModelList
-                        .get(position)
-                        .getPexelsMediumUrl())
-                .into(holder.pexelsImageView);
+        Glide.with(pexelsContext).load(pexelsModelList.get(position).getPexelsMediumUrl()).into(holder.pexelsImageView);
     }
 
     @Override
@@ -67,7 +66,11 @@ public class PexelsAdapter extends RecyclerView.Adapter<PexelsAdapter.PexelsView
             pexelsCreatorName = itemView.findViewById(R.id.pexelsCreatorName);
             pexelsDescription = itemView.findViewById(R.id.pexelsDescription);
 
+            itemView.setOnClickListener(click -> {
+                 int position = getAbsoluteAdapterPosition();
+                 PexelsModel selected = pexelsModelList.get(position);
+                 pexelsViewModel.selectedImage.postValue(selected);
+            });
         }
     }
-
 }

@@ -1,6 +1,8 @@
 package algonquin.cst2335.finalproject;
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -21,6 +23,10 @@ import algonquin.cst2335.finalproject.databinding.PexelsFragmentBinding;
 public class PexelsFragment extends Fragment {
 
     PexelsModel selected;
+
+    public PexelsFragment(PexelsModel image){
+        selected = image;
+    }
 
     @Nullable
     @Override
@@ -45,6 +51,10 @@ public class PexelsFragment extends Fragment {
         binding.pexelsFragmentURL.setText(pexelsUrl);
 
         String language = Locale.getDefault().getLanguage();
+        binding.pexelsFragmentURL.setOnClickListener(click -> {
+            Uri uri = Uri.parse(pexelsUrl);
+            startActivity(new Intent(Intent.ACTION_VIEW, uri));
+        });
 
         binding.pexelsFragmentFavBttn.setOnClickListener(click -> {
 

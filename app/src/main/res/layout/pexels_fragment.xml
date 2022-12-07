@@ -3,89 +3,105 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginBottom="16dp"
+    android:background="@android:color/white"
     tools:context=".PexelsFragment">
-
-    <TextView
-        android:id="@+id/pexelsFragmentAuthor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Description goes here"
-        android:textColor="@android:color/darker_gray"
-        android:textStyle="italic"
-        app:layout_constraintStart_toStartOf="@+id/pexelsFragmentDesc"
-        app:layout_constraintTop_toBottomOf="@+id/pexelsFragmentDesc" />
-
-    <TextView
-        android:id="@+id/pexelsFragmentSize"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="width × height goes here"
-        app:layout_constraintStart_toStartOf="@+id/pexelsFragmentAuthor"
-        app:layout_constraintTop_toBottomOf="@+id/pexelsFragmentAuthor" />
-
-    <TextView
-        android:id="@+id/pexelsFragmentDesc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:text="Author Goes Here"
-        android:textColor="@android:color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:src="@drawable/ic_launcher_background"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/pexelsFragmentURL"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="URL goes here"
-        app:layout_constraintStart_toStartOf="@+id/pexelsFragmentSize"
-        app:layout_constraintTop_toBottomOf="@+id/pexelsFragmentSize" />
-
-    <Button
-        android:id="@+id/pexelsFragmentFavBttn"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="32dp"
-        android:text="@string/favButton"
+        android:layout_marginBottom="8dp"
+        android:background="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/pexelsFragmentDownBttn"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/pexelsFragmentURL"
-        app:layout_constraintTop_toBottomOf="@+id/pexelsFragmentURL" />
+        app:layout_constraintStart_toStartOf="@+id/imageView">
 
-    <Button
-        android:id="@+id/pexelsFragmentDownBttn"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginEnd="32dp"
-        android:text="@string/downButton"
-        app:layout_constraintBottom_toBottomOf="@+id/pexelsFragmentFavBttn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/pexelsFragmentFavBttn"
-        app:layout_constraintTop_toTopOf="@+id/pexelsFragmentFavBttn" />
+        <TextView
+            android:id="@+id/pexelsFragmentAuthor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Author Goes Here"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/pexelsFragmentDesc"
+            app:layout_constraintStart_toStartOf="@+id/pexelsFragmentDesc" />
+
+        <TextView
+            android:id="@+id/pexelsFragmentDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Description goes here"
+            android:textColor="@android:color/darker_gray"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toTopOf="@+id/pexelsFragmentSize"
+            app:layout_constraintStart_toStartOf="@+id/pexelsFragmentSize" />
+
+        <TextView
+            android:id="@+id/pexelsFragmentSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="width × height goes here"
+            app:layout_constraintBottom_toTopOf="@+id/pexelsFragmentURL"
+            app:layout_constraintStart_toStartOf="@+id/pexelsFragmentURL" />
+
+        <TextView
+            android:id="@+id/pexelsFragmentURL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="URL goes here"
+            android:textColor="#3F51B5"
+            app:layout_constraintBottom_toTopOf="@+id/pexelsFragmentDownBttn"
+            app:layout_constraintStart_toStartOf="@+id/pexelsFragmentDownBttn" />
+
+        <Button
+            android:id="@+id/pexelsFragmentDownBttn"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="4dp"
+            android:text="@string/downButton"
+            app:layout_constraintBottom_toBottomOf="@+id/pexelsFragmentFavBttn"
+            app:layout_constraintEnd_toStartOf="@+id/pexelsFragmentFavBttn"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/pexelsFragmentFavBttn" />
+
+        <Button
+            android:id="@+id/pexelsFragmentFavBttn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/favButton"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/pexelsFragmentDownBttn" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
