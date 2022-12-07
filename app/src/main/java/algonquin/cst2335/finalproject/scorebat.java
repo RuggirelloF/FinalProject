@@ -9,6 +9,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
@@ -62,6 +66,11 @@ public class scorebat extends AppCompatActivity {
     //favs
     RecyclerView favRecyclerView;
     ArrayList<ScorebatModelClass> favsArrayList;
+
+    //Shared prefrences
+    public static final String SB_SHARED_PREFS = "sbWebPrefs";
+    public static final String URL = "SBURL";
+    public String lastWatchLink;
 
     FragmentContainerView fragView;
     @Override
@@ -119,6 +128,20 @@ public class scorebat extends AppCompatActivity {
         buildRecyclerView();
         buildFavsRecyclerView();
 
+        SharedPreferences sbPrefs = getSharedPreferences(SB_SHARED_PREFS, Context.MODE_PRIVATE);
+        lastWatchLink = sbPrefs.getString(URL,"");
+
+        if(lastWatchLink.length() > 5){
+            Uri uri = Uri.parse(lastWatchLink);
+            this.startActivity(new Intent(Intent.ACTION_VIEW,uri));
+
+            /*SharedPreferences*/ sbPrefs = getSharedPreferences(SB_SHARED_PREFS, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sbPrefs.edit();
+            editor = sbPrefs.edit();
+            editor.putString(URL, "");
+            editor.commit();
+        }
+
 
 
     }
@@ -135,6 +158,7 @@ public class scorebat extends AppCompatActivity {
         // setting layout manager
         // to our recycler view.
         favRecyclerView.setLayoutManager(manager);
+
 
         // setting adapter to
         // our recycler view.
@@ -209,6 +233,7 @@ public class scorebat extends AppCompatActivity {
         });
         queue.add(jsonArrayRequest);
     }
+
 }
 
 

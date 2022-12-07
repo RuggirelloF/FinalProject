@@ -1,8 +1,12 @@
 package algonquin.cst2335.finalproject;
 
+import static algonquin.cst2335.finalproject.scorebat.SB_SHARED_PREFS;
+import static algonquin.cst2335.finalproject.scorebat.URL;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -70,6 +74,11 @@ public class ScorebatAdapter extends RecyclerView.Adapter<ScorebatAdapter.MyView
         holder.side1Name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SharedPreferences sbPrefs = sbContext.getSharedPreferences(SB_SHARED_PREFS, sbContext.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sbPrefs.edit();
+                editor.putString(URL, sbModel.sbWatchLink1);
+                editor.commit();
+
                 Uri uri = Uri.parse(sbModel.sbWatchLink1);
                 sbContext.startActivity(new Intent(Intent.ACTION_VIEW,uri));
             }
@@ -78,16 +87,34 @@ public class ScorebatAdapter extends RecyclerView.Adapter<ScorebatAdapter.MyView
         holder.side2Name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SharedPreferences sbPrefs = sbContext.getSharedPreferences(SB_SHARED_PREFS, sbContext.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sbPrefs.edit();
+                editor.putString(URL, sbModel.sbWatchLink2);
+                editor.commit();
+
                 Uri uri = Uri.parse(sbModel.sbWatchLink2);
                 sbContext.startActivity(new Intent(Intent.ACTION_VIEW,uri));
+
+
             }
         });
 
         holder.watchLiveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //Creating a new shared prefrence and saving it to the phone based
+                //on the button pressed the url will be saved so that next time you load into
+                //the application it will launch you last viewed page.
+                SharedPreferences sbPrefs = sbContext.getSharedPreferences(SB_SHARED_PREFS, sbContext.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sbPrefs.edit();
+                editor.putString(URL, sbModel.sbStreamUrl);
+                editor.commit();
+
                 Uri uri = Uri.parse(sbModel.sbStreamUrl);
                 sbContext.startActivity(new Intent(Intent.ACTION_VIEW, uri));
+
+
             }
         });
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -115,7 +142,7 @@ public class ScorebatAdapter extends RecyclerView.Adapter<ScorebatAdapter.MyView
             @Override
             public void onClick(View v) {
                 showAlert();
-                ScorebatModelClass model = new ScorebatModelClass("Erik","e"+sbData.get(position).compName,"e","e","e","e","e","e","e");
+                ScorebatModelClass model = new ScorebatModelClass(sbData.get(position).title,sbData.get(position).thumbnail, sbData.get(position).date,sbData.get(position).compName,sbData.get(position).team1Name,sbData.get(position).sbWatchLink1, sbModel.team1Name, sbData.get(position).sbWatchLink2,sbData.get(position).sbStreamUrl);
                 favsArrayList.add(model);
 
             }
@@ -189,5 +216,8 @@ public class ScorebatAdapter extends RecyclerView.Adapter<ScorebatAdapter.MyView
             }
         });
         alert.show();
+    }
+
+    public void saveData(){
     }
 }

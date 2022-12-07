@@ -16,9 +16,6 @@ public class MatchDetailsFragment extends Fragment {
 
         MatchDetailsFragmentBinding binding = MatchDetailsFragmentBinding.inflate(inflater);
 
-        binding.sbfComptext.setText(sbModel.compName);
-        binding.sbfCompTitle.setText(sbModel.title);
-        binding.sbfTeamtext.setText(sbModel.team1Name + " vs " + sbModel.getTeam2Name() );
         return binding.getRoot();
     }
 
