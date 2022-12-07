@@ -115,14 +115,17 @@ public class scorebat extends AppCompatActivity {
         scorebatArrayList = new ArrayList<>();
         getData();
 
+
         buildRecyclerView();
         buildFavsRecyclerView();
+
+
 
     }
     private void buildFavsRecyclerView() {
 
         // initializing our adapter class.
-        adapter = new ScorebatAdapter(scorebatArrayList, scorebat.this);
+        adapter = new ScorebatAdapter(favsArrayList, scorebat.this, favsArrayList);
 
         // adding layout manager
         // to our recycler view.
@@ -141,7 +144,7 @@ public class scorebat extends AppCompatActivity {
     private void buildRecyclerView() {
 
         // initializing our adapter class.
-        adapter = new ScorebatAdapter(scorebatArrayList, scorebat.this);
+        adapter = new ScorebatAdapter(scorebatArrayList, scorebat.this,favsArrayList);
 
         // adding layout manager
         // to our recycler view.

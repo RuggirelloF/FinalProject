@@ -29,12 +29,15 @@ public class ScorebatAdapter extends RecyclerView.Adapter<ScorebatAdapter.MyView
     private Context sbContext;
     private ArrayList<ScorebatModelClass> sbData;
     private Boolean clicked = false;
+    ArrayList<ScorebatModelClass> favsArrayList;
 
 
 
-    public ScorebatAdapter(ArrayList<ScorebatModelClass> sbData,Context sbContext) {
+
+    public ScorebatAdapter(ArrayList<ScorebatModelClass> sbData,Context sbContext,     ArrayList<ScorebatModelClass> favsArrayList) {
         this.sbContext = sbContext;
         this.sbData = sbData;
+        this.favsArrayList = favsArrayList;
     }
 
     @NonNull
@@ -112,6 +115,9 @@ public class ScorebatAdapter extends RecyclerView.Adapter<ScorebatAdapter.MyView
             @Override
             public void onClick(View v) {
                 showAlert();
+                ScorebatModelClass model = new ScorebatModelClass("Erik","e"+sbData.get(position).compName,"e","e","e","e","e","e","e");
+                favsArrayList.add(model);
+
             }
         });
 
@@ -173,7 +179,7 @@ public class ScorebatAdapter extends RecyclerView.Adapter<ScorebatAdapter.MyView
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Toast.makeText(sbContext, "Added to Favourites", Toast.LENGTH_SHORT).show();
-
+               //ScorebatModelClass model = new ScorebatModelClass("Erik","","","","","","","","");
             }
         });
         alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
