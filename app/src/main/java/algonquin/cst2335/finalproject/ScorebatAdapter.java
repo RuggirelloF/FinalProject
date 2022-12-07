@@ -173,8 +173,8 @@ public class ScorebatAdapter extends RecyclerView.Adapter<ScorebatAdapter.MyView
             @Override
             public void onClick(View v) {
                 showAlert(position);
-                ScorebatModelClass model = new ScorebatModelClass(sbData.get(position).title,sbData.get(position).thumbnail, sbData.get(position).date,sbData.get(position).compName,sbData.get(position).team1Name,sbData.get(position).sbWatchLink1, sbModel.team1Name, sbData.get(position).sbWatchLink2,sbData.get(position).sbStreamUrl);
-                favsArrayList.add(model);
+                //ScorebatModelClass model = new ScorebatModelClass(sbData.get(position).title,sbData.get(position).thumbnail, sbData.get(position).date,sbData.get(position).compName,sbData.get(position).team1Name,sbData.get(position).sbWatchLink1, sbModel.team1Name, sbData.get(position).sbWatchLink2,sbData.get(position).sbStreamUrl);
+                //favsArrayList.add(model);
 
                 //scorebatEntity thisEntity = new scorebatEntity(sbData.get(position).title,sbData.get(position).thumbnail, sbData.get(position).date,sbData.get(position).compName,sbData.get(position).team1Name,sbData.get(position).sbWatchLink1, sbModel.team1Name, sbData.get(position).sbWatchLink2,sbData.get(position).sbStreamUrl);
                 //Executor thread = Executors.newSingleThreadExecutor();
@@ -260,6 +260,7 @@ public class ScorebatAdapter extends RecyclerView.Adapter<ScorebatAdapter.MyView
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Toast.makeText(sbContext, "Nothing was saved.", Toast.LENGTH_SHORT).show();
+                //sbDao.deleteMessage(thiseEntity);
             }
         });
         alert.show();
