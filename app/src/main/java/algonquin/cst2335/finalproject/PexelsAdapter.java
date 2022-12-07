@@ -2,6 +2,7 @@ package algonquin.cst2335.finalproject;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentContainer;
+import androidx.fragment.app.FragmentContainerView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -59,12 +62,19 @@ public class PexelsAdapter extends RecyclerView.Adapter<PexelsAdapter.PexelsView
         public ImageView pexelsImageView;
         public TextView pexelsCreatorName;
         public TextView pexelsDescription;
+        public FragmentContainerView pexelsFragmentContainerView;
 
         public PexelsViewHolder(@NonNull View itemView) {
             super(itemView);
-            pexelsImageView = itemView.findViewById(R.id.pexelsImageView);
+            pexelsImageView = itemView.findViewById(R.id.pexelsImageFull);
             pexelsCreatorName = itemView.findViewById(R.id.pexelsCreatorName);
             pexelsDescription = itemView.findViewById(R.id.pexelsDescription);
+            pexelsFragmentContainerView = itemView.findViewById(R.id.pexelsFragmentContainerView);
+
+            /*itemView.setOnClickListener(click -> {
+                pexelsFragmentContainerView.setVisibility(View.VISIBLE);
+            });*/
+
         }
     }
 

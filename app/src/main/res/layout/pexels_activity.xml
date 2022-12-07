@@ -5,12 +5,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/darker_gray"
     tools:context=".PexelsActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/pexelsRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/darker_gray"/>
+        android:layout_alignParentStart="true"
+        android:background="@android:color/black" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/pexelsFragmentContainerView"
+        android:name="algonquin.cst2335.finalproject.PexelsInfo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:visibility="invisible" />
 
 </RelativeLayout>

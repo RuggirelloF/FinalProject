@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">FinalProject</string>
+    <string name="app_name">Final Project</string>
+    <string name="help_button">Help</string>
+    <string name="favs_button">Favorites</string>
+    <string name="home_button">Menu</string>
+    <string name="back_button">Back</string>
+    <string name="search_button">Search</string>
+    <string name="favButton">Add to favourites</string>
+    <string name="downButton">Download</string>
+    <string name="searchParam">Search Parameter...</string>
 </resources>

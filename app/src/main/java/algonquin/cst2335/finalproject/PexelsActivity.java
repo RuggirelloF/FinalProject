@@ -7,11 +7,14 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.android.volley.AuthFailureError;
@@ -28,9 +31,15 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class PexelsActivity extends AppCompatActivity {
+
+    SharedPreferences prefs;
+    final String SHARED_PREF_NAME = "MyData";
+    final String KEY_SEARCH = "search";
+
 
     RecyclerView pexelsRecyclerView;
     PexelsAdapter pexelsAdapter;
@@ -48,8 +57,8 @@ public class PexelsActivity extends AppCompatActivity {
 
         pexelsRecyclerView = findViewById(R.id.pexelsRecyclerView);
         pexelsItemList = new ArrayList<>();
-        pexelsAdapter = new PexelsAdapter(this, pexelsItemList);
 
+        pexelsAdapter = new PexelsAdapter(this, pexelsItemList);
         pexelsRecyclerView.setAdapter(pexelsAdapter);
 
         final GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 1);
@@ -80,6 +89,16 @@ public class PexelsActivity extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Intent fromPrevious = getIntent();
+        String searchParam = fromPrevious.getStringExtra("SearchParam");
+        url = "https://api.pexels.com/v1/search/?page=" + pageNumber + "&per_page=80&query=" + searchParam;
+        pexelsItemList.clear();
         parseJSON();
     }
 
@@ -131,37 +150,66 @@ public class PexelsActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.pexels_main, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
+
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId() == R.id.nav_search){
-            AlertDialog.Builder alert = new AlertDialog.Builder(this);
-            final EditText editText = new EditText(this);
-            editText.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
 
-            alert.setMessage("Search Category...");
-            alert.setTitle("Search Image");
+        String language = Locale.getDefault().getLanguage();
 
-            alert.setView(editText);
+        if(item.getItemId() == R.id.pexelsNavHelp){
 
-            alert.setPositiveButton("Search", (dialogInterface, i) -> {
-                String query = editText.getText().toString().toLowerCase();
+            if(language == "es"){
+                AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
-                url = "https://api.pexels.com/v1/search/?page="+pageNumber+"&per_page=80&query="+query;
-                pexelsItemList.clear();
-                parseJSON();
-            });
+                alert.setTitle("¡Bienvenido a la Aplicación Pexels!");
+                alert.setMessage(
+                        "No te preocupes, estoy acá para ayudarte\n\n" +
+                                "■ Seleccionar la casa te lleva al menú de incio\n" +
+                                "■ Seleccionar la lupa te lleva al menú de busqueda\n" +
+                                "■ Seleccionar el corazón te lleva al menú de favoritos\n" +
+                                "■ Seleccionar el signo de interrogación muestra esta alerta... De nuevo ¬_¬"
+                );
 
-            alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
+                alert.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+                alert.show();
+            }
+            else{
+                AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
-                }
-            });
-            alert.show();
+                alert.setTitle("Welcome to the Pexels Application!");
+                alert.setMessage(
+                        "Don't you worry, I'm here to help you\n\n" +
+                                "■ By selecting the home takes you to the main menu\n" +
+                                "■ By selecting the magnifier takes you to the search menu\n" +
+                                "■ By selecting the heart takes you to your favorites\n" +
+                                "■ By selecting the question mark displays this alert... Again ¬_¬"
+                );
+
+                alert.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+                alert.show();
+            }
+
+
+        }
+
+        if(item.getItemId() == R.id.pexelsNavSearch){
+            Intent moveToSearch = new Intent(PexelsActivity.this, PexelsSearch.class);
+            startActivity(moveToSearch);
         }
 
         return super.onOptionsItemSelected(item);

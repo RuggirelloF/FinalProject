@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Proyecto Final</string>
+    <string name="favButton">Agregar a favoritos</string>
+    <string name="downButton">Descargar</string>
+    <string name="searchParam">Parametro de Busqueda...</string>
+    <string name="help_button">Ayuda</string>
+    <string name="favs_button">Favoritos</string>
+    <string name="home_button">Menú</string>
+    <string name="search_button">Buscar</string>
+    <string name="back_button">Atrás</string>
+
+</resources>
