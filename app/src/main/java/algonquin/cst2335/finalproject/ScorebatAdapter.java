@@ -1,7 +1,7 @@
 package algonquin.cst2335.finalproject;
 
 import static algonquin.cst2335.finalproject.scorebat.SB_SHARED_PREFS;
-import static algonquin.cst2335.finalproject.scorebat.URL;
+import static algonquin.cst2335.finalproject.scorebat.SBURL;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -24,9 +24,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import androidx.appcompat.app.AlertDialog;
 
 public class ScorebatAdapter extends RecyclerView.Adapter<ScorebatAdapter.MyViewHolder> {
 
@@ -76,7 +73,7 @@ public class ScorebatAdapter extends RecyclerView.Adapter<ScorebatAdapter.MyView
             public void onClick(View v) {
                 SharedPreferences sbPrefs = sbContext.getSharedPreferences(SB_SHARED_PREFS, sbContext.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sbPrefs.edit();
-                editor.putString(URL, sbModel.sbWatchLink1);
+                editor.putString(SBURL, sbModel.sbWatchLink1);
                 editor.commit();
 
                 Uri uri = Uri.parse(sbModel.sbWatchLink1);
@@ -89,7 +86,7 @@ public class ScorebatAdapter extends RecyclerView.Adapter<ScorebatAdapter.MyView
             public void onClick(View v) {
                 SharedPreferences sbPrefs = sbContext.getSharedPreferences(SB_SHARED_PREFS, sbContext.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sbPrefs.edit();
-                editor.putString(URL, sbModel.sbWatchLink2);
+                editor.putString(SBURL, sbModel.sbWatchLink2);
                 editor.commit();
 
                 Uri uri = Uri.parse(sbModel.sbWatchLink2);
@@ -108,7 +105,7 @@ public class ScorebatAdapter extends RecyclerView.Adapter<ScorebatAdapter.MyView
                 //the application it will launch you last viewed page.
                 SharedPreferences sbPrefs = sbContext.getSharedPreferences(SB_SHARED_PREFS, sbContext.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sbPrefs.edit();
-                editor.putString(URL, sbModel.sbStreamUrl);
+                editor.putString(SBURL, sbModel.sbStreamUrl);
                 editor.commit();
 
                 Uri uri = Uri.parse(sbModel.sbStreamUrl);
@@ -117,6 +114,10 @@ public class ScorebatAdapter extends RecyclerView.Adapter<ScorebatAdapter.MyView
 
             }
         });
+
+
+
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -142,7 +143,7 @@ public class ScorebatAdapter extends RecyclerView.Adapter<ScorebatAdapter.MyView
             @Override
             public void onClick(View v) {
                 showAlert();
-                ScorebatModelClass model = new ScorebatModelClass(sbData.get(position).title,sbData.get(position).thumbnail, sbData.get(position).date,sbData.get(position).compName,sbData.get(position).team1Name,sbData.get(position).sbWatchLink1, sbModel.team1Name, sbData.get(position).sbWatchLink2,sbData.get(position).sbStreamUrl);
+                ScorebatModelClass model = new ScorebatModelClass(sbData.get(position).title,sbData.get(position).thumbnail, sbData.get(position).date,sbData.get(position).compName,sbData.get(position).team1Name,sbData.get(position).sbWatchLink1, sbModel.team1Name, sbData.get(position).sbWatchLink2,sbData.get(position).sbStreamUrl, sbData.get(position).videoEmbed);
                 favsArrayList.add(model);
 
             }
@@ -180,6 +181,9 @@ public class ScorebatAdapter extends RecyclerView.Adapter<ScorebatAdapter.MyView
         //fav Button
         Button favButton;
 
+        //Watch Button
+        //Button watchButton;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -192,6 +196,7 @@ public class ScorebatAdapter extends RecyclerView.Adapter<ScorebatAdapter.MyView
             watchLiveBtn = itemView.findViewById(R.id.sb_live_match_btn);
             cardView = itemView.findViewById(R.id.sb_recyclerView);
             favButton = itemView.findViewById(R.id.favButton);
+            //watchButton = itemView.findViewById(R.id.sbHightlightsBtn);
 
 
 
@@ -216,6 +221,13 @@ public class ScorebatAdapter extends RecyclerView.Adapter<ScorebatAdapter.MyView
             }
         });
         alert.show();
+    }
+
+    public String getVideoUrl(String videoEmbed){
+        String url = videoEmbed;
+        String[] urlSplit = url.split("src='");
+        String[] urlSplit2 = urlSplit[1].split("'");
+        return urlSplit2[0];
     }
 
     public void saveData(){

@@ -5,11 +5,13 @@
       <map>
         <entry key="..\:/Users/Hefty/AndroidStudioProjects/FinalProject/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="..\:/Users/Hefty/AndroidStudioProjects/FinalProject/app/src/main/res/drawable/ic_sb_fav.xml" value="0.1" />
+        <entry key="..\:/Users/Hefty/AndroidStudioProjects/FinalProject/app/src/main/res/drawable/item_border.xml" value="0.1" />
+        <entry key="..\:/Users/Hefty/AndroidStudioProjects/FinalProject/app/src/main/res/drawable/soccerball_image.xml" value="0.1" />
         <entry key="..\:/Users/Hefty/AndroidStudioProjects/FinalProject/app/src/main/res/layout/activity_scorebat.xml" value="0.2" />
         <entry key="..\:/Users/Hefty/AndroidStudioProjects/FinalProject/app/src/main/res/layout/fragment_scorebat_about.xml" value="0.264" />
         <entry key="..\:/Users/Hefty/AndroidStudioProjects/FinalProject/app/src/main/res/layout/match_details_fragment.xml" value="0.16" />
-        <entry key="..\:/Users/Hefty/AndroidStudioProjects/FinalProject/app/src/main/res/layout/sb_nav_header.xml" value="0.1" />
-        <entry key="..\:/Users/Hefty/AndroidStudioProjects/FinalProject/app/src/main/res/layout/scorebat_item.xml" value="0.152" />
+        <entry key="..\:/Users/Hefty/AndroidStudioProjects/FinalProject/app/src/main/res/layout/sb_nav_header.xml" value="0.2" />
+        <entry key="..\:/Users/Hefty/AndroidStudioProjects/FinalProject/app/src/main/res/layout/scorebat_item.xml" value="0.264" />
         <entry key="..\:/Users/Hefty/AndroidStudioProjects/FinalProject/app/src/main/res/menu/sb_menu.xml" value="0.14166666666666666" />
       </map>
     </option>

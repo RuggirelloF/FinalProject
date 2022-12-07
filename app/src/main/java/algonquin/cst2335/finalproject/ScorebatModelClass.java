@@ -22,6 +22,18 @@ public class ScorebatModelClass
     String sbWatchLink2;
 
 
+
+    //video
+    String videoEmbed;
+
+    public String getVideoEmbed() {
+        return videoEmbed;
+    }
+
+    public void setVideoEmbed(String videoEmbed) {
+        this.videoEmbed = videoEmbed;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -97,7 +109,7 @@ public class ScorebatModelClass
 
     public ScorebatModelClass(String title, String thumbnail, String date,
                                     String compName, String team1Name, String sbWatchLink1,
-                                        String team2Name, String sbWatchLink2, String sbStreamUrl){
+                                        String team2Name, String sbWatchLink2, String sbStreamUrl, String videoEmbed){
         this.title = title;
         this.date = date;
         this.thumbnail = thumbnail;
@@ -107,6 +119,7 @@ public class ScorebatModelClass
         this.team2Name = team2Name;
         this.sbWatchLink2 = sbWatchLink2;
         this.sbStreamUrl = sbStreamUrl;
+        this.videoEmbed = videoEmbed;
 
     }
 }

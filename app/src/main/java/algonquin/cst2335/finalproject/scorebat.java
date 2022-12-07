@@ -2,23 +2,18 @@ package algonquin.cst2335.finalproject;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentContainer;
 import androidx.fragment.app.FragmentContainerView;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,25 +22,13 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
-
-import javax.net.ssl.HttpsURLConnection;
 
 import algonquin.cst2335.finalproject.databinding.ActivityScorebatBinding;
 
@@ -69,12 +52,13 @@ public class scorebat extends AppCompatActivity {
 
     //Shared prefrences
     public static final String SB_SHARED_PREFS = "sbWebPrefs";
-    public static final String URL = "SBURL";
+    public static final String SBURL = "SBURL";
     public String lastWatchLink;
 
     FragmentContainerView fragView;
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
         switch(item.getItemId()){
             case R.id.nav_fav:
                 Toast.makeText(this, "You pressed Fav", Toast.LENGTH_SHORT).show();
@@ -129,7 +113,7 @@ public class scorebat extends AppCompatActivity {
         buildFavsRecyclerView();
 
         SharedPreferences sbPrefs = getSharedPreferences(SB_SHARED_PREFS, Context.MODE_PRIVATE);
-        lastWatchLink = sbPrefs.getString(URL,"");
+        lastWatchLink = sbPrefs.getString(SBURL,"");
 
         if(lastWatchLink.length() > 5){
             Uri uri = Uri.parse(lastWatchLink);
@@ -138,7 +122,7 @@ public class scorebat extends AppCompatActivity {
             /*SharedPreferences*/ sbPrefs = getSharedPreferences(SB_SHARED_PREFS, Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sbPrefs.edit();
             editor = sbPrefs.edit();
-            editor.putString(URL, "");
+            editor.putString(SBURL, "");
             editor.commit();
         }
 
@@ -214,10 +198,16 @@ public class scorebat extends AppCompatActivity {
                         String sbSide2Name = sbSide2.getString("name");
                         String sbWatchLink2 = sbSide2.getString("url");
 
+                        //Does not work causes the whole query to crash. I am unsure how to make this
+                        //work I tried adding in the raw string from the fetch, then I tried to parse the
+                        //string data to make it what it needs to be.
+                        //JSONObject sbVideo = responseObject.getJSONObject("videos");
+                        //String sbVideoEmbed = getVideoUrl(sbVideo.getString("embed"));
+
 
                         //v1
                         //scorebatArrayList.add(new ScorebatModelClass(sbTitle, sbTumbnail,sbDate));
-                        scorebatArrayList.add(new ScorebatModelClass(sbTitle, sbTumbnail,sbDate, sbCompName, sbSide1Name, sbWatchLink1, sbSide2Name, sbWatchLink2, sbStreamUrl));
+                        scorebatArrayList.add(new ScorebatModelClass(sbTitle, sbTumbnail,sbDate, sbCompName, sbSide1Name, sbWatchLink1, sbSide2Name, sbWatchLink2, sbStreamUrl, ""));
                         buildRecyclerView();
 
                     } catch (JSONException e) {
@@ -234,6 +224,12 @@ public class scorebat extends AppCompatActivity {
         queue.add(jsonArrayRequest);
     }
 
+    public String getVideoUrl(String videoEmbed){
+        String url = videoEmbed;
+        String[] urlSplit = url.split("src='");
+        String[] urlSplit2 = urlSplit[1].split("'");
+        return urlSplit2[0];
+    }
 }
 
 
