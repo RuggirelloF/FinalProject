@@ -18,6 +18,16 @@
               android:icon="@drawable/ic_baseline_about"
               app:showAsAction="ifRoom"></item>
 
+        <item android:id="@+id/nav_goToTicketMaster"
+            android:title="Ticket Master"
+            app:showAsAction="never"/>
+        <item android:id="@+id/nav_goToPexels"
+            android:title="Pexels"
+            app:showAsAction="never"/>
+        <item android:id="@+id/nav_goToMovieInformation"
+            android:title="Movie Information"
+            app:showAsAction="never"/>
+
     </group>
 
 </menu>

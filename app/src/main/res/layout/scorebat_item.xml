@@ -12,7 +12,7 @@
         android:id="@+id/sb_teamtext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Match: "
+        android:text="@string/Match"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:textColor="@color/black"/>
@@ -60,7 +60,7 @@
         android:id="@+id/sb_comptext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Competition: "
+        android:text="@string/Competition"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sb_datetext"
         android:textColor="@color/black"/>
@@ -79,7 +79,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="Watch Match"
+        android:text="@string/Watch"
         app:layout_constraintStart_toStartOf="@+id/sb_live_match_btn"
         app:layout_constraintTop_toBottomOf="@+id/sb_live_match_btn" />
 
@@ -96,7 +96,7 @@
         android:id="@+id/sb_live_match_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="View Live Match"
+        android:text="@string/ViewLiveMatch"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sb_thumbnail" />
 
@@ -104,7 +104,7 @@
         android:id="@+id/favButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add to Favourites"
+        android:text="@string/AddToFavourites"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/sb_live_match_btn"
         app:layout_constraintTop_toBottomOf="@+id/sb_thumbnail" />

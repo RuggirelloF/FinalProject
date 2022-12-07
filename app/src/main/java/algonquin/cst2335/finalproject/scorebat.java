@@ -91,7 +91,12 @@ public class scorebat extends AppCompatActivity {
                 favRecyclerView.setVisibility(View.GONE);
                 recyclerView.setVisibility(View.GONE);
                 fragView.setVisibility(View.VISIBLE);
-
+                break;
+            case R.id.nav_goToMovieInformation:
+                break;
+            case R.id.nav_goToPexels:
+                break;
+            case R.id.nav_goToTicketMaster:
                 break;
         }
         return true;
@@ -124,7 +129,6 @@ public class scorebat extends AppCompatActivity {
            });
         }
 
-
         setContentView(binding.getRoot());
         setSupportActionBar(binding.sbToolbar);
         recyclerView = findViewById(R.id.sb_recyclerView);
@@ -153,6 +157,7 @@ public class scorebat extends AppCompatActivity {
             editor.commit();
         }
 
+        fragView.setVisibility(View.GONE);
 
 
     }

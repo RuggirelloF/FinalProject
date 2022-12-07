@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="Competition">Compétition: </string>
+    <string name="Teams">équipes</string>
+    <string name="Watch">Regardez</string>
+    <string name="AddToFavourites">ajouter aux Favoris</string>
+    <string name="ViewLiveMatch">match en direct</string>
+    <string name="YouPressedFavourites">Vous avez appuyé sur les favoris</string>
+    <string name="Match">Jeu: </string>
+    <string name="ScorebatInfo">Merci d\'utiliser scorebat !
+                                L\'application est très facile à utiliser.
+                                Naviguez entre notre flux en direct des matchs
+                                et cliquez dessus pour afficher plus d\'options
+                                comme les statistiques de l\'équipe et des liens vers les faits saillants de Scorebat.
+                                Enregistrez un match dans vos favoris par et passez-le en revue
+                                plus tard.
+                                </string>
+</resources>

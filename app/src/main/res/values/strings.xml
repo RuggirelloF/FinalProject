@@ -2,4 +2,24 @@
     <string name="app_name">FinalProject</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="Competition">Competition: </string>
+    <string name="Teams">Teams</string>
+    <string name="Watch">Watch </string>
+    <string name="AddToFavourites">Add to Favourites</string>
+    <string name="ViewLiveMatch">View Live Match</string>
+    <string name="YouPressedFavourites">You pressed Favourites</string>
+    <string name="Match">Match: </string>
+    <string name="ScorebatInfo">Thank you for using scorebat!
+                                The application is very easy to use.
+                                Navigate between our live feed of matches
+                                and click on them to reveal more options
+                                like team stats and links to Scorebat highlights.
+                                Save a match to your Favourites by and review it
+                                later.
+                                </string>
+
+
+
+
 </resources>
