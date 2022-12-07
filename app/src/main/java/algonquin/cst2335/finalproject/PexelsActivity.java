@@ -84,6 +84,9 @@ public class PexelsActivity extends AppCompatActivity {
                 }
             }
         });
+
+        
+
     }
 
     @Override
