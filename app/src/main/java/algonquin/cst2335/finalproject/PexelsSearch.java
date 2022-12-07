@@ -95,7 +95,7 @@ public class PexelsSearch extends AppCompatActivity {
                 alert.setMessage(
                         "Don't you worry, I'm here to help you\n\n" +
                                 "1. Enter a search parameter\n" +
-                                "2. Press the \"SEARCH\" button\n" +
+                                "2. Press the \"SEARCH\" pexelsFragmentFavBttn\n" +
                                 "3. Enjoy the displayed images\n\n" +
                                 "■ Selecting the back arrow takes you back to the previous page\n" +
                                 "■ Selecting the home takes you to the main menu\n" +

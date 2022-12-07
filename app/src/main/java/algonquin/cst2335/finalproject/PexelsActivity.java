@@ -37,7 +37,6 @@ public class PexelsActivity extends AppCompatActivity {
     final String SHARED_PREF_NAME = "MyData";
     final String KEY_SEARCH = "search";
 
-
     RecyclerView pexelsRecyclerView;
     PexelsAdapter pexelsAdapter;
     ArrayList<PexelsModel> pexelsModelList;
@@ -85,8 +84,6 @@ public class PexelsActivity extends AppCompatActivity {
                 }
             }
         });
-
-
     }
 
     @Override
@@ -186,10 +183,10 @@ public class PexelsActivity extends AppCompatActivity {
                 alert.setTitle("Welcome to the Pexels Application!");
                 alert.setMessage(
                         "Don't you worry, I'm here to help you\n\n" +
-                                "■ By selecting the home takes you to the main menu\n" +
-                                "■ By selecting the magnifier takes you to the search menu\n" +
-                                "■ By selecting the heart takes you to your favorites\n" +
-                                "■ By selecting the question mark displays this alert... Again ¬_¬"
+                                "■ Selecting the home takes you to the main menu\n" +
+                                "■ Selecting the magnifier takes you to the search menu\n" +
+                                "■ Selecting the heart takes you to your favorites\n" +
+                                "■ Selecting the question mark displays this alert... Again ¬_¬"
                 );
 
                 alert.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
@@ -200,8 +197,6 @@ public class PexelsActivity extends AppCompatActivity {
                 });
                 alert.show();
             }
-
-
         }
 
         if(item.getItemId() == R.id.pexelsNavSearch){
