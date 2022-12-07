@@ -8,8 +8,9 @@ import androidx.room.PrimaryKey;
 @Entity
 public class scorebatEntity {
 
-    @PrimaryKey
-    public int uid;
+    @PrimaryKey (autoGenerate = true)
+    @ColumnInfo(name = "id")
+    public int id;
 
     @ColumnInfo(name = "team1Name")
     public String team1Name;
@@ -34,4 +35,24 @@ public class scorebatEntity {
 
     @ColumnInfo(name = "imageURL")
     public String imageURL;
+
+    @ColumnInfo(name = "streamURL")
+    public String streamURL;
+
+    public scorebatEntity(){}
+    public scorebatEntity(String team1Name, String team2Name,
+                          String compName, String date,
+                          String title, String sbWatchLink1,
+                          String sbWatchLink2, String imageURL,
+                          String streamURL){
+        this.team1Name = team1Name;
+        this.tean2Name = team2Name;
+        this.compName = compName;
+        this.date = date;
+        this.title = title;
+        this.sbWatchLink1 = sbWatchLink1;
+        this.sbWatchLink2 = sbWatchLink2;
+        this.imageURL = imageURL;
+        this.streamURL = streamURL;
+    }
 }

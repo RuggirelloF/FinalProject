@@ -3,8 +3,10 @@ package algonquin.cst2335.finalproject;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentContainerView;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import android.content.Context;
 import android.content.Intent;
@@ -29,8 +31,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import algonquin.cst2335.finalproject.databinding.ActivityScorebatBinding;
+import algonquin.cst2335.finalproject.sbView.ScorebatViewModel;
 
 @SuppressWarnings("ALL")
 public class scorebat extends AppCompatActivity {
@@ -54,6 +59,11 @@ public class scorebat extends AppCompatActivity {
     public static final String SB_SHARED_PREFS = "sbWebPrefs";
     public static final String SBURL = "SBURL";
     public String lastWatchLink;
+
+    //Database
+    scorebatDao sbDao;
+    ScorebatViewModel sbViewModel;
+    ArrayList<scorebatEntity> sbEntities = new ArrayList<>();
 
     FragmentContainerView fragView;
     @Override
@@ -98,6 +108,23 @@ public class scorebat extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityScorebatBinding.inflate(getLayoutInflater());
+
+        //new db section
+        sbViewModel = new ViewModelProvider(this).get(ScorebatViewModel.class);
+        sbEntities = sbViewModel.savedFavoutires.getValue();
+        ScorebatDatabase db = Room.databaseBuilder(getApplicationContext(), ScorebatDatabase.class,
+                             "FavouritesDatabase").build();
+        sbDao = db.sbDao();
+        if(sbEntities == null){
+            sbViewModel.savedFavoutires.postValue(sbEntities = new ArrayList<>());
+            Executor thread = Executors.newSingleThreadExecutor();
+            thread.execute(()->{
+                sbEntities.addAll(sbDao.getAllFavs());
+           //     runOnUiThread(()->binding.sbRecyclerView.setAdapter(adapter));
+           });
+        }
+
+
         setContentView(binding.getRoot());
         setSupportActionBar(binding.sbToolbar);
         recyclerView = findViewById(R.id.sb_recyclerView);
@@ -131,13 +158,20 @@ public class scorebat extends AppCompatActivity {
     }
     private void buildFavsRecyclerView() {
 
+        for(scorebatEntity thisEntity : sbEntities){
+            ScorebatModelClass newEntity = new ScorebatModelClass(thisEntity.title, thisEntity.imageURL, thisEntity.date, thisEntity.compName,
+                                                                  thisEntity.team1Name, thisEntity.sbWatchLink1, thisEntity.tean2Name, thisEntity.sbWatchLink2, thisEntity.streamURL);
+            favsArrayList.add(newEntity);
+        }
         // initializing our adapter class.
-        adapter = new ScorebatAdapter(favsArrayList, scorebat.this, favsArrayList);
+        adapter = new ScorebatAdapter(favsArrayList, scorebat.this, favsArrayList,
+                                        sbDao, sbViewModel, sbEntities);
 
         // adding layout manager
         // to our recycler view.
         LinearLayoutManager manager = new LinearLayoutManager(this);
         favRecyclerView.setHasFixedSize(true);
+        favRecyclerView.setVisibility(View.GONE);
 
         // setting layout manager
         // to our recycler view.
@@ -152,7 +186,8 @@ public class scorebat extends AppCompatActivity {
     private void buildRecyclerView() {
 
         // initializing our adapter class.
-        adapter = new ScorebatAdapter(scorebatArrayList, scorebat.this,favsArrayList);
+        adapter = new ScorebatAdapter(scorebatArrayList, scorebat.this,favsArrayList,
+                                        sbDao, sbViewModel, sbEntities);
 
         // adding layout manager
         // to our recycler view.
@@ -207,7 +242,7 @@ public class scorebat extends AppCompatActivity {
 
                         //v1
                         //scorebatArrayList.add(new ScorebatModelClass(sbTitle, sbTumbnail,sbDate));
-                        scorebatArrayList.add(new ScorebatModelClass(sbTitle, sbTumbnail,sbDate, sbCompName, sbSide1Name, sbWatchLink1, sbSide2Name, sbWatchLink2, sbStreamUrl, ""));
+                        scorebatArrayList.add(new ScorebatModelClass(sbTitle, sbTumbnail,sbDate, sbCompName, sbSide1Name, sbWatchLink1, sbSide2Name, sbWatchLink2, sbStreamUrl));
                         buildRecyclerView();
 
                     } catch (JSONException e) {

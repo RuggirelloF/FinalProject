@@ -24,6 +24,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+
+import algonquin.cst2335.finalproject.sbView.ScorebatViewModel;
 
 public class ScorebatAdapter extends RecyclerView.Adapter<ScorebatAdapter.MyViewHolder> {
 
@@ -32,13 +36,26 @@ public class ScorebatAdapter extends RecyclerView.Adapter<ScorebatAdapter.MyView
     private Boolean clicked = false;
     ArrayList<ScorebatModelClass> favsArrayList;
 
+    //db
+    scorebatDao sbDao;
+    ScorebatViewModel sbViewModel;
+    ArrayList<scorebatEntity> sbEntities;
+    Boolean isFav = false;
 
 
 
-    public ScorebatAdapter(ArrayList<ScorebatModelClass> sbData,Context sbContext,     ArrayList<ScorebatModelClass> favsArrayList) {
+
+    public ScorebatAdapter(ArrayList<ScorebatModelClass> sbData,Context sbContext, ArrayList<ScorebatModelClass> favsArrayList,
+                            scorebatDao sbDao, ScorebatViewModel sbViewModel, ArrayList<scorebatEntity> sbEntities) {
         this.sbContext = sbContext;
         this.sbData = sbData;
         this.favsArrayList = favsArrayList;
+
+        //db
+        this.sbDao = sbDao;
+        this.sbEntities = sbEntities;
+        this.sbViewModel = sbViewModel;
+
     }
 
     @NonNull
@@ -52,6 +69,19 @@ public class ScorebatAdapter extends RecyclerView.Adapter<ScorebatAdapter.MyView
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+
+        if(isFav = true){
+            scorebatEntity sbEntity = sbEntities.get(position);
+            holder.title.setText(sbEntity.title);
+            holder.date.setText(sbEntity.date);
+            holder.compName.setText(sbEntity.compName);
+            holder.side1Name.setText("Watch " + sbEntity.team1Name);
+            holder.side2Name.setText("Watch " + sbEntity.tean2Name);
+
+            Picasso.get().load(sbEntity.imageURL).into(holder.thumbnail);
+
+        }
+
         ScorebatModelClass sbModel = sbData.get(position);
         holder.title.setText(sbModel.getTitle());
         holder.date.setText(sbModel.getDate());
@@ -142,9 +172,16 @@ public class ScorebatAdapter extends RecyclerView.Adapter<ScorebatAdapter.MyView
         holder.favButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showAlert();
-                ScorebatModelClass model = new ScorebatModelClass(sbData.get(position).title,sbData.get(position).thumbnail, sbData.get(position).date,sbData.get(position).compName,sbData.get(position).team1Name,sbData.get(position).sbWatchLink1, sbModel.team1Name, sbData.get(position).sbWatchLink2,sbData.get(position).sbStreamUrl, sbData.get(position).videoEmbed);
+                showAlert(position);
+                ScorebatModelClass model = new ScorebatModelClass(sbData.get(position).title,sbData.get(position).thumbnail, sbData.get(position).date,sbData.get(position).compName,sbData.get(position).team1Name,sbData.get(position).sbWatchLink1, sbModel.team1Name, sbData.get(position).sbWatchLink2,sbData.get(position).sbStreamUrl);
                 favsArrayList.add(model);
+
+                //scorebatEntity thisEntity = new scorebatEntity(sbData.get(position).title,sbData.get(position).thumbnail, sbData.get(position).date,sbData.get(position).compName,sbData.get(position).team1Name,sbData.get(position).sbWatchLink1, sbModel.team1Name, sbData.get(position).sbWatchLink2,sbData.get(position).sbStreamUrl);
+                //Executor thread = Executors.newSingleThreadExecutor();
+                //thread.execute(() ->{
+                //    sbDao.insertMessage(thisEntity);
+                //});
+
 
             }
         });
@@ -203,7 +240,7 @@ public class ScorebatAdapter extends RecyclerView.Adapter<ScorebatAdapter.MyView
         }
     }
 
-    public void showAlert(){
+    public void showAlert(int position){
         AlertDialog.Builder alert = new AlertDialog.Builder(sbContext);
         alert.setTitle("Add to Favourites?");
         alert.setMessage("Yes or no?");
@@ -211,7 +248,12 @@ public class ScorebatAdapter extends RecyclerView.Adapter<ScorebatAdapter.MyView
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Toast.makeText(sbContext, "Added to Favourites", Toast.LENGTH_SHORT).show();
-               //ScorebatModelClass model = new ScorebatModelClass("Erik","","","","","","","","");
+                scorebatEntity thisEntity = new scorebatEntity(sbData.get(position).title,sbData.get(position).thumbnail, sbData.get(position).date,sbData.get(position).compName,sbData.get(position).team1Name,sbData.get(position).sbWatchLink1, sbData.get(position).team2Name, sbData.get(position).sbWatchLink2,sbData.get(position).sbStreamUrl);
+                Executor thread = Executors.newSingleThreadExecutor();
+                thread.execute(() ->{
+                    sbDao.insertMessage(thisEntity);
+                });
+
             }
         });
         alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -232,4 +274,5 @@ public class ScorebatAdapter extends RecyclerView.Adapter<ScorebatAdapter.MyView
 
     public void saveData(){
     }
+
 }

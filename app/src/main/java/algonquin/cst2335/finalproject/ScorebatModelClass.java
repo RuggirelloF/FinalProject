@@ -109,7 +109,7 @@ public class ScorebatModelClass
 
     public ScorebatModelClass(String title, String thumbnail, String date,
                                     String compName, String team1Name, String sbWatchLink1,
-                                        String team2Name, String sbWatchLink2, String sbStreamUrl, String videoEmbed){
+                                        String team2Name, String sbWatchLink2, String sbStreamUrl){
         this.title = title;
         this.date = date;
         this.thumbnail = thumbnail;
@@ -119,7 +119,7 @@ public class ScorebatModelClass
         this.team2Name = team2Name;
         this.sbWatchLink2 = sbWatchLink2;
         this.sbStreamUrl = sbStreamUrl;
-        this.videoEmbed = videoEmbed;
+        this.sbStreamUrl = sbStreamUrl;
 
     }
 }
